@@ -12,9 +12,9 @@ import (
 // Struct
 
 type note struct {
-	NoteTitle   string
-	NoteContent string
-	TimeStamp   time.Time
+	NoteTitle   string    `json:"title"`
+	NoteContent string    `json:"content"`
+	TimeStamp   time.Time `json:"timestamp"`
 }
 
 func new(title string, content string) note {
