@@ -17,12 +17,20 @@ type note struct {
 	TimeStamp   time.Time `json:"timestamp"`
 }
 
-func new(title string, content string) note {
-	return note{
-		NoteTitle:   title,
-		NoteContent: content,
-		TimeStamp:   time.Now(),
-	}
+func new() *note {
+	return &note{}
+}
+
+func (note *note) setNoteTitle(title string) {
+	note.NoteTitle = title
+}
+
+func (note *note) setNoteContent(content string) {
+	note.NoteContent = content
+}
+
+func (note *note) setTimeStamp() {
+	note.TimeStamp = time.Now()
 }
 
 func (note note) getNoteTitle() string {
@@ -58,7 +66,10 @@ func main() {
 	var noteTitle string = promptUser("Please enter a title for your note:")
 	var noteContent string = promptUser("Now please enter your note:")
 
-	var newNote note = new(noteTitle, noteContent)
+	newNote := new()
+	newNote.setNoteTitle(noteTitle)
+	newNote.setNoteContent(noteContent)
+	newNote.setTimeStamp()
 
 	fmt.Println(newNote.getNoteTitle())
 	fmt.Println(newNote.getNoteContent())
